@@ -16,34 +16,39 @@ struct arraylist* inicializar(int capacidade) {
 }
 
 int obterElementoEmPosicao(struct arraylist* lista, int posicao) {
-    //TODO
+    return lista->vetor[posicao];
 }
 
 void duplicarCapacidade(struct arraylist* lista) {
     //TODO
 }
 
-void inserirElementoNoFim(struct arraylist* lista, int *valor) {
+void inserirElementoNoFim(struct arraylist* lista, int valor) {
+     
+    /*if(lista->qtdade == lista->capacidade){
+       duplicarCapacidade(lista);
+    }*/
 
-    //lista->qtdade++;
-    printf("quantidade de elementos do vetor = ", valor);
-    //lista->vetor[lista->qtdade] = valor;
+    lista->vetor[lista->qtdade] = valor;
+    lista->qtdade++;
 }
 
 void inserirElementoEmPosicao(struct arraylist* lista, int valor, int posicao) {
-    //TODO
+    
+
+
 }
 
 void atualizarElemento(struct arraylist* lista, int valor, int posicao) {
-    //TODO
+    lista->vetor[posicao] = valor;
 }
 
 void removerElementoNoFim(struct arraylist* lista) {
-    //TODO
+    lista->qtdade--;
 }
 
 void removerElementoEmPosicao(struct arraylist* lista, int posicao) {
-    //TODO
+    
 }
 
 void exibirLista(struct arraylist* lista) {
@@ -57,15 +62,19 @@ void exibirLista(struct arraylist* lista) {
     printf("]");
 }
 
-void main(){
+int  main(){
 
     int capacidade = 10;
-    int* num = 19;
 
-    int lista = inicializar(capacidade);
+    struct arraylist* lista = inicializar(capacidade);
 
-    inserirElementoNoFim(&lista, &num);
-    //exibirLista(&lista);
+    inserirElementoNoFim(lista, 50);
+    inserirElementoNoFim(lista, 40);
+    inserirElementoNoFim(lista, 30);
+    inserirElementoNoFim(lista, 20);
+    inserirElementoNoFim(lista, 10);
+    printf("o valor do index 2 = %d", obterElementoEmPosicao(lista,2));
+    exibirLista(lista);
 
 
 
