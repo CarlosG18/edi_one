@@ -1,0 +1,9 @@
+para duplicar o espaço:
+
+voce pode criar um novo ponteiro para o vetor, copiar o vetor antigo no novo atraves de um loop, liberar o antigo vetor e fazer com que a lista apontepara o novo vetor.
+
+ou 
+
+usando a funcao realloc.
+
+ao usar a funcao realloc, se existir espaco para duplicar esta funcao ira conceber mais espaco sem a nescessidade de fazer uma copia. porem caso o sistema nao possua espaco disponivel pode dar um problema nesta duplicacao. para este caso especifico é indicado o uso da alocacao "manual".
