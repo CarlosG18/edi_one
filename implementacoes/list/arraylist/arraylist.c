@@ -16,27 +16,33 @@ struct arraylist* inicializar(int capacidade) {
 }
 
 int obterElementoEmPosicao(struct arraylist* lista, int posicao) {
-    return lista->vetor[posicao];
+  return lista->vetor[posicao];
 }
 
 void duplicarCapacidade(struct arraylist* lista) {
-    //TODO
+    int* vetor_aux = (int*) calloc(2 * lista->capacidade, sizeof(int));
+    for(int i=0; i<lista->capacidade; i++){
+      vetor_aux[i] = lista->vetor[i];
+    }
+    free(lista->vetor);
+    lista->vetor = vetor_aux;
 }
 
 void inserirElementoNoFim(struct arraylist* lista, int valor) {
-     
-    /*if(lista->qtdade == lista->capacidade){
-       duplicarCapacidade(lista);
-    }*/
+  if(lista->qtdade == lista->capacidade){
+    duplicarCapacidade(lista);
+  }
 
-    lista->vetor[lista->qtdade] = valor;
-    lista->qtdade++;
+  lista->vetor[lista->qtdade] = valor;
+  lista->qtdade++;
 }
 
 void inserirElementoEmPosicao(struct arraylist* lista, int valor, int posicao) {
-    
-
-
+  lista->qtdade++;
+  for(int i=lista->qtdade-1; i>posicao; i--){
+    lista->vetor[i] = lista->vetor[i-1]; 
+  }
+  lista->vetor[posicao] = valor;
 }
 
 void atualizarElemento(struct arraylist* lista, int valor, int posicao) {
@@ -44,11 +50,14 @@ void atualizarElemento(struct arraylist* lista, int valor, int posicao) {
 }
 
 void removerElementoNoFim(struct arraylist* lista) {
-    lista->qtdade--;
+  lista->qtdade--;
 }
 
 void removerElementoEmPosicao(struct arraylist* lista, int posicao) {
-    
+  for(int i=posicao; i<lista->qtdade-1; i++){
+    lista->vetor[i] = lista->vetor[i+1];
+  }
+  lista->qtdade--;
 }
 
 void exibirLista(struct arraylist* lista) {
@@ -64,20 +73,19 @@ void exibirLista(struct arraylist* lista) {
 
 int  main(){
 
-    int capacidade = 10;
+    int capacidade = 2;
 
     struct arraylist* lista = inicializar(capacidade);
 
+    inserirElementoNoFim(lista, 60);
     inserirElementoNoFim(lista, 50);
     inserirElementoNoFim(lista, 40);
     inserirElementoNoFim(lista, 30);
     inserirElementoNoFim(lista, 20);
     inserirElementoNoFim(lista, 10);
-    printf("o valor do index 2 = %d", obterElementoEmPosicao(lista,2));
+    printf(" --- ");
     exibirLista(lista);
-
-
-
-
+    
+    
     return 0;
 }
